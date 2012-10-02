@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><:= Trans('Album:'); :> <:print Path('album_name'); :></title>
+  <: Meta() :>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="<:=Theme_URL():>/styles.css" />
+</head>
+
+<body>
+  <: Body_Tag() :>
+  <section id="page">
+
+<header>
+  <nav class="clear">
+    <ul class="menu">
+      <li><a href="/"><:= Trans('Home') :></a></li>
+      <: while (Parent_Albums()) { _:> <: if (Parent_Albums_Left() > 1) { _:> <li><: pParent_Album() :></li> <: } _:> <: Next_Parent_Album() :> <: } _:>
+    </ul>
+  </nav>
+</header>
+
+<h1><: print Path('album_name') :></h1>
+
+<: if (isHeader()) { _:> <h2><:pHeader():></h2> <: } _:>
+<:  if (my $dir = First('dirs')) { _:>
+<article id="album" class="clear">
+<h2><:= Trans('More albums:') :></h2>
+#c    # Loop on all the albums
+<:    while ($dir) { _:>
+<figure class="thumb">
+   <: my $img = Image($dir,'thumb'); :><:= Get($dir,'href','dir').$img."</a>" :><br />
+  <figurecaption class="infotext">
+    <:= Get($dir,'href','dir').Name($dir) :><br />
+    <:= Get($dir, 'num_pics_str'); :><: if (Get($dir, 'num_dirs')){ _:>,<br />
+    <:= Get($dir, 'num_dirs_str'); :><: if (Get($dir, 'num_dirs') > 1) { _:>s<: } _:></a><: } else { _:></a><: } _:>
+  </figurecaption>
+</figure>
+<:    $dir = Next($dir); :> <:  } :>
+</article>
+<div class="line"></div>
+<:  } :>
+
+<:  if (Images()) { _:>
+<article id="thumbs" class="clear">
+  <: while(Images()) { _:>
+  <figure class="thumb">
+    <: print Get($img,'href','image'); :><: print Image($img,'thumb') if Get($img,'thumb'); :>
+    <figcaption><:=Image_Name():></figcaption></a>
+  </figure>
+<: Next_Image() :>
+  <: } _:>
+<span class="clear"></span>
+</article>
+<: } _:>
+
+<footer>
+  <div class="line"></div>
+  <: if (isFooter()) { _:> <h2> <:pFooter():> </h2> <: } _:>
+  <span class="by"> <: Credit() :> on <:=scalar localtime:></span>
+  <span class="tmpl">Album theme GreenFloat5 by <a href="mailto:ospalh@gmail.com">Roland Sieker</a></span>
+  <span class="tmpl">Original template: <a href="http://tutorialzine.com/2010/02/free-xhtml-css3-website-template/">Tutorialzine</a></span>
+</footer>
+
+</section>
+
+</body>
+</html>

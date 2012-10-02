@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+  <title><:= Trans('Album:'):> <:= pAlbum_Name() :> – <:= Trans('Image:');:> <:= Name(This_Image):></title>
+  <: Meta() :>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="<:=Theme_URL():>/styles.css" />
+</head>
+
+<body>
+  <: Body_Tag() :>
+  <section id="page">
+
+<header>
+  <nav class="clear">
+    <ul class="menu">
+      <li><a href="/"><:= Trans('Home') :></a></li>
+      <: while (Parent_Albums()) { _:><: if (Parent_Albums_Left() > 1) { _:><li class="breadcrum"><: pParent_Album() :><: } else { _:><li class="actual"><: pParent_Album() :><: } _:></li>
+      <: Next_Parent_Album() :><: } _:>
+    </ul>
+  </nav>
+</header>
+
+<h1><: print Path('album_name') :></h1>
+<: if (isHeader()) { _:> <h2> <:pHeader():> </h2> <: } _:>
+
+<div id="fullfloats">
+
+  <: $prev = Prev(This_Image, $opt->{image_loop}); :>
+  <figure class="navigation" style="float: left">
+    <:=Get($prev,'href','image_page'); :><:=Image($prev,'thumb') :>
+    <figcaption>←<:=Name($prev):></figcaption></a>
+  </figure>
+
+  <: $next = Next(This_Image, $opt->{image_loop}); :>
+  <figure class="navigation"  style="float: right">
+    <:=Get($next,'href','image_page'); :><:=Image($next,'thumb') :>
+    <figcaption><:=Name($next):>→</figcaption></a>
+  </figure>
+
+  <div class="fullimage">
+    <h2><:= Name(This_Image):></h2>
+    <figure class="fullimage">
+      <:=Get(This_Image,'href','image'):><:=Image(This_Image,'full'); :></a>
+      <figcaption><:=Caption(This_Image); :></figcaption>
+  </figure>
+  </div>
+</div>
+
+<span class="clear"> </span>
+
+<footer>
+  <div class="line"></div>
+  <: if (isFooter()) { _:> <h2> <:pFooter():> </h2> <: } _:>
+  <span class="by"> <: Credit() :> on <:=scalar localtime:>; </span>
+  <span class="by">Album theme GreenFloat5 by <a href="mailto:ospalh@gmail.com">Roland Sieker</a>; </span>
+  <span class="tmpl">Original template: <a href="http://tutorialzine.com/2010/02/free-xhtml-css3-website-template/">Tutorialzine</a></span>
+</footer>
+
+</section>
+
+</body>
+</html>

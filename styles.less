@@ -1,0 +1,352 @@
+/* -*- mode: CSS; coding: utf-8 -*- */
+@bg-color: #213e4a;
+@bg-bg-color: #355664;
+@fg-color: #fcfcfc;
+@shd-color: #333;
+@aradius: 20px;
+@fradius: 10px;
+@gradient-top: #dadada;
+@gradient-bottom: #eee;
+
+@main-line-bg: #24404c;
+@main-line-bborder: #416371;
+@article-line-bg: #15242a;
+@article-line-bborder: #204656;
+
+@ul-link:  #565656;
+@ul-link-bgh: #f0f0f0;
+
+@img-shadow: #4d7788;
+
+@link-color: #0196e3;
+@footer-link: #ccc;
+@footer-link-bgh: #142830;
+
+*
+{
+	/* Universal reset: */
+	margin:0;
+	padding:0;
+}
+
+header, footer, article, section, hgroup, nav, figure
+{
+    /* Giving a display value to the HTML5 rendered elements: */
+    display:block;
+}
+
+body
+{
+    /* Setting the default text color, size, page background and a font stack: */
+    color: @fg-color;
+    background-color:@bg-bg-color;
+    font-family: "Praxis LT", "Linux Biolium",  sans-serif;
+}
+
+/* Hyperlink Styles: */
+
+a, a:visited
+{
+    color: @link-color;
+    text-decoration:none;
+    outline:none;
+
+    img
+    {
+    /*      border:none; */
+    }
+    &:hover
+    {
+	text-decoration:underline;
+    }
+}
+
+
+/* Headings: */
+
+h1, h2, h3, h4
+{
+    font-family: "Praxis LT",  "Linux Biolium",  sans-serif;
+    text-shadow:0 1px 1px black;
+    a, a:visited
+    {
+        color: @fg-color;
+    }
+}
+
+h1
+{
+    /* The logo text */
+    font-size:3.5em;
+    padding:0.5em 0 0;
+}
+
+header
+{
+    padding-top: 20px;
+    h1{}
+    h3
+    {
+        margin:0 0 1em;
+    }
+    h2
+    {
+	letter-spacing:0.01em;
+    }
+}
+
+
+h2
+{
+    font-size:2.2em;
+    font-weight:normal;
+}
+
+h3
+{
+    /* The slogan text */
+    font-size:2em;
+    font-weight:normal;
+}
+
+h4
+{
+    font-size:1.2em;
+}
+
+p
+{
+    line-height:1.5em;
+    padding-bottom:1em;
+}
+
+.line
+{
+    /* The dividing line: */
+    height:1px;
+    background-color: @main-line-bg;
+    border-bottom:1px solid @main-line-bborder;
+    margin:1em 0;
+    overflow:hidden;
+}
+
+article .line
+{
+    /* The dividing line inside of the article is darker: */
+    background-color: @article-line-bg;
+    border-bottom-color: @article-line-bborder;
+    margin:1.3em 0;
+}
+
+footer .line
+{
+    margin:2em 0;
+}
+
+nav
+{
+    /*	padding:0 5px; */
+    /*	position:absolute; */
+    /*	right:0; */
+
+    top:4em;
+    top-margin:4em;
+
+    border:1px solid @fg-color;
+
+    -moz-box-shadow:0 1px 1px @shd-color;
+    -webkit-box-shadow:0 1px 1px @shd-color;
+    box-shadow:0 1px 1px @shd-color;
+
+
+ /* fallback */
+    background-color: @gradient-top;
+    /* Safari 4-5, Chrome 1-9 */
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%,
+                                 from(@gradient-top), to(@gradient-bottom));
+    /* Safari 5.1, Chrome 10+ */
+    background: -webkit-linear-gradient(top, @gradient-top, @gradient-bottom);
+    /* Firefox 3.6+ */
+    background: -moz-linear-gradient(top, @gradient-top, @gradient-bottom);
+    /* IE 10 */
+    background: -ms-linear-gradient(top, @gradient-top, @gradient-bottom);
+    /* Opera 11.10+ */
+    background: -o-linear-gradient(top, @gradient-top, @gradient-bottom);
+
+    ul li
+    {
+        display:inline;
+
+        a, a:visited
+        {
+	    color: @ul-link;
+	    display:block;
+	    float:left;
+	    font-size:1.25em;
+	    font-weight:bold;
+	    margin:5px 2px;
+	    padding:7px 10px 4px;
+	    text-shadow:0 1px 1px white;
+            &:hover
+            {
+	        text-decoration:none;
+	        background-color: @ul-link-bgh;
+            }
+        }
+    }
+
+    &.clear:after
+    {
+        content: ".";
+    }
+}
+
+/* The clearfix hack to clear the floats: */
+.clear:after
+{
+
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+
+}
+
+
+
+
+/* The navigation styling: */
+nav, article, nav ul li a
+{
+    /* Applying CSS3 rounded corners: */
+    -moz-border-radius:@aradius;
+    -webkit-border-radius:@aradius;
+    border-radius:@aradius;
+}
+
+/* Article styles: */
+
+#page
+{
+    width:85%;
+    min-width:180px;
+    margin:0 auto;
+    position:relative;
+}
+
+
+#fullfloats
+{
+    overflow: auto;
+}
+
+article
+{
+    background-color:@bg-color;
+    margin:2em 0;
+    padding:15px;
+    overflow: auto;
+}
+
+
+figure
+{
+    img
+    {
+	margin-bottom: 5px;
+	overflow:hidden;
+        vertical-align: middle;
+	-moz-border-radius:@fradius;
+	-webkit-border-radius:@fradius;
+	border-radius:@fradius;
+	-moz-box-shadow:0 0 7px @img-shadow;
+	-webkit-box-shadow:0 0 7px @img-shadow;
+	box-shadow:0 0 7px  @img-shadow;
+        background-color: @bg-color;
+
+        &:hover{
+	    -moz-box-shadow:0 0 17px @img-shadow;
+	    -webkit-box-shadow:0 0 17px @img-shadow;
+	    box-shadow:0 0 17px @img-shadow;
+        }
+    }
+
+
+    &.fullimage img, &.navigation img
+    {
+        padding: @fradius;
+    }
+
+    &.thumb
+    {
+        float: left;
+	margin:2em 1em;
+    }
+
+    &.navigation
+    {
+	margin:0em 0em;
+    }
+
+}
+
+div
+{
+    &.fullimage
+    {
+        float: left;
+	margin:2em 1em;
+    }
+
+}
+
+/* Footer styling: */
+
+footer
+{
+    margin-bottom:30px;
+    text-align:center;
+    font-size:0.825em;
+
+  p
+  {
+      margin-bottom:-2.5em;
+      position:relative;
+  }
+
+  img
+  {
+      vertical-align:text-top;
+  }
+
+  a, a:visited
+  {
+      color: @footer-link;
+      padding:2px 4px;
+      z-index:100;
+      position:relative;
+      &:hover
+      {
+	  text-decoration:none;
+	  background-color: @footer-link-bgh;
+      }
+  }
+
+  .by
+  {
+      margin-right: 5px;
+      float:left;
+  }
+
+  .tmpl
+  {
+      margin-left: 5px;
+      float:right;
+  }
+}
+
+ul
+{
+    margin: 0.2em 0.1em;
+    padding-left: 1.5em;
+}
