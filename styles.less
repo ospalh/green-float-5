@@ -251,7 +251,7 @@ article
 
 figure
 {
-    img
+    img, .noimage
     {
 	margin-bottom: 5px;
 	overflow:hidden;
@@ -262,7 +262,6 @@ figure
 	-moz-box-shadow:0 0 7px @img-shadow;
 	-webkit-box-shadow:0 0 7px @img-shadow;
 	box-shadow:0 0 7px  @img-shadow;
-        background-color: @bg-color;
 
         &:hover{
 	    -moz-box-shadow:0 0 17px @img-shadow;
@@ -271,6 +270,17 @@ figure
         }
     }
 
+    img
+    {
+        background-color: @bg-color;
+    }
+
+    .noimage
+    {
+        display: block;
+        background-color: @bg-bg-color;
+        text-align: center;
+    }
 
     &.fullimage img, &.navigation img
     {
@@ -289,6 +299,8 @@ figure
     }
 
 }
+
+
 
 div
 {
