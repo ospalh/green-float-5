@@ -5,6 +5,11 @@
   <: Meta() :>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <link rel="stylesheet" type="text/css" href="<:=Theme_URL():>/styles.css" />
+  <!-- Internet Explorer HTML5 enabling script: -->
+  <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <style type="text/css">.clear {zoom: 1;display: block;}</style>
+  <![endif]-->
 </head>
 
 <body>
@@ -32,11 +37,11 @@
    <: my $img = Image($dir,'thumb'); :><:= Get($dir,'href','dir').$img."</a>" :><br />
   <figurecaption class="infotext">
     <:= Get($dir,'href','dir').Name($dir) :><br />
-    <:= Get($dir, 'num_pics_str'); :><: if (Get($dir, 'num_dirs')){ _:>,<br />
-    <:= Get($dir, 'num_dirs_str'); :><: if (Get($dir, 'num_dirs') > 1) { _:>s<: } _:></a><: } else { _:></a><: } _:>
+    <: if (Get($dir, 'num_pics')){ :><:= Get($dir, 'num_pics_str'); :><: if (Get($dir, 'num_dirs')){ :>,<br /> <: }} _:>
+    <: if (Get($dir, 'num_dirs')){ :><:=Get($dir, 'num_dirs_str'); _:><: } _:></a>
   </figurecaption>
 </figure>
-<:    $dir = Next($dir); :> <:  } :>
+<:    $dir = Next($dir); } :>
 </article>
 <div class="line"></div>
 <:  } :>
