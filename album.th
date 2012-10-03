@@ -27,22 +27,23 @@
 
 <h1><: print Path('album_name') :></h1>
 
-<: if (isHeader()) { _:> <h2><:pHeader():></h2> <: } _:>
+<: if (isHeader()) { _:> <h3><:pHeader():></h3> <: } _:>
 <:  if (my $dir = First('dirs')) { _:>
 <article id="album" class="clear">
 <h2><:= Trans('More albums:') :></h2>
 #c    # Loop on all the albums
-<:    while ($dir) { _:>
+<: my $thumb_x = 130; my $thumb_y = 100;
+    while ($dir) { _:>
 <figure class="thumb">
    <: my $img = Image($dir,'thumb');
       if ($img) 
       {
-          _:><:= Get($dir,'href','dir').$img."</a>" :><:
+          $thumb_x = Get($dir, 'thumb', 'x');
+          $thumb_y = Get($dir, 'thumb', 'y');
+          _:><:= Get($dir,'href','dir').$img."</a><br />" :><:
       } else {
-          my $first = First('image');
-          my $first_x = Get($first, 'thumb', 'x');
-          _:><span class="noimg" width="130:>"><:= $first:><:= $first_x :>&szlig;&nbsp;</span><:
-      }_:><br />
+          _:><:= Get($dir,'href','dir') :><span class="noimage" style="min-width:<:=$thumb_x:>px;  min-height:<:=$thumb_y:>px;"><:= Name($dir) :></span></a><:
+      }_:>
   <figurecaption class="infotext">
     <:= Get($dir,'href','dir').Name($dir) :><br />
     <: if (Get($dir, 'num_pics'))
