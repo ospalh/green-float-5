@@ -34,11 +34,29 @@
 #c    # Loop on all the albums
 <:    while ($dir) { _:>
 <figure class="thumb">
-   <: my $img = Image($dir,'thumb'); :><:= Get($dir,'href','dir').$img."</a>" :><br />
+   <: my $img = Image($dir,'thumb');
+      if ($img) 
+      {
+          _:><:= Get($dir,'href','dir').$img."</a>" :><:
+      } else {
+          my $first = First('image');
+          my $first_x = Get($first, 'thumb', 'x');
+          _:><span class="noimg" width="130:>"><:= $first:><:= $first_x :>&szlig;&nbsp;</span><:
+      }_:><br />
   <figurecaption class="infotext">
     <:= Get($dir,'href','dir').Name($dir) :><br />
-    <: if (Get($dir, 'num_pics')){ :><:= Get($dir, 'num_pics_str'); :><: if (Get($dir, 'num_dirs')){ :>,<br /> <: }} _:>
-    <: if (Get($dir, 'num_dirs')){ :><:=Get($dir, 'num_dirs_str'); _:><: } _:></a>
+    <: if (Get($dir, 'num_pics'))
+       {
+           :><:= Get($dir, 'num_pics_str'); :><:
+           if (Get($dir, 'num_dirs'))
+           {
+               :>,<br /> <: 
+           }
+       } _:>
+    <: if (Get($dir, 'num_dirs'))
+       {
+           :><:=Get($dir, 'num_dirs_str'); _:><:
+       } _:></a>
   </figurecaption>
 </figure>
 <:    $dir = Next($dir); } :>
